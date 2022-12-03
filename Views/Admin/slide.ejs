@@ -1,0 +1,44 @@
+<%- include('Common/header') %>
+<%- include('Common/sidebar') %>
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5 pt-5">
+  <% if(message.length>0) { %>
+    <div class="alert alert-success text-center">
+        <%= message %>
+    </div>
+    <% } %>
+    <h2 class="mb-4">All Slide</h2>
+    <div><a href="/admin/add-slide/page"><button class="btn btn-large btn-success">Add Slide</button></a></div>
+    <div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Content</th>
+                <th scope="col" class="text-center">Image</th>
+                <th colspan="2" class="text-center">Action</th>
+              </tr>
+            </thead>
+           <% if(allslide.length>0) { %>
+            <% let i=0 %>
+            <tbody>
+                <% for(let x of allslide) { %>
+                    <% i+=1 %>
+              <tr>
+                <th  class="text-center" scope="row"><%= i %></th>
+                <td  class="text-center" ><%= x.name %></td>
+                <td  class="text-center" ><%= x.content %></td>
+                <td  class="text-center"><img src="./../../Upload/SlideImage/<%= x.image %>" height="50px" width="50px"/></td>
+                <td  class="text-center"><a href="/admin/edit-slide/page/<%= x._id %>"><button class="btn btn-success">Edit</button></a></td>
+                <td  class="text-center"><a href="/admin/delete-slide/<%= x._id %>"><button class="btn btn-danger">Delete</button></a></td>
+              </tr>
+              <% } %>
+            </tbody>
+            <% }else{ %>
+                <div>No Slide Available...</div>
+                <% } %>
+          </table>
+    </div>
+    </div>
+<%- include('Common/footer') %>

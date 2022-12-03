@@ -1,0 +1,126 @@
+<%- include('common/header') %>
+  <%- include('common/navbar') %>
+    <main id="main">
+
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+          <div class="d-flex justify-content-between align-items-center pt-4">
+            <h2>Blog</h2>
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li>Blog</li>
+            </ol>
+          </div>
+
+        </div>
+      </section><!-- End Breadcrumbs -->
+
+      <!-- ======= Blog Section ======= -->
+      <section id="blog" class="blog">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-lg-8 entries">
+              <% if(data.docs && data.docs.length>0) {%>
+                <% for(let x of data.docs) { %>
+                  <article class="entry" data-aos="fade-up">
+
+                    <div class="entry-img">
+                      <img src="./../../Upload/BlogImage/<%=x.image%>" alt="" class="img-fluid">
+                    </div>
+
+                    <h2 class="entry-title">
+                      <a href="/single_blog">
+                        <%= x.title %>
+                      </a>
+                    </h2>
+
+                    <div class="entry-meta">
+                      <ul>
+                        <li class="d-flex align-items-center"><i class="icofont-user"></i> <a
+                            href="blog-single.html">John Doe</a></li>
+                        <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a
+                            href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                        <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a
+                            href="blog-single.html">12 Comments</a></li>
+                      </ul>
+                    </div>
+
+                    <div class="entry-content">
+                      <p>
+                        <%= x.content %>
+                      </p>
+                      <div class="read-more">
+                        <a href="/single_blog">Read More</a>
+                      </div>
+                    </div>
+
+                  </article>
+                  <% }} %>
+
+                    <div class="blog-pagination">
+                      <ul class="justify-content-center">
+                        <li><a class=" <%= !data.hasPrevPage ? 'disabled' : '' %>" href="<%= data.prevPage ? `?page=${data.prevPage}` : '' %>"><i class="icofont-rounded-left"></i></a></li>
+                        <% if(data.totalPages){ for(i=1; i<=data.totalPages; i++){ %>
+                        <li class="<%= (pager == i) ? 'active' : '' %>"><a href="?page=<%= i %>"><%= i %></a></li>
+                        <% }} %>
+                       
+                        <li><a class=" <%= !data.hasNextPage ? 'disabled' : '' %>" href="<%= data.nextPage ? `?page=${data.nextPage}` : '' %>"><i class="icofont-rounded-right"></i></a></li>
+                      </ul>
+                    </div>
+
+            </div><!-- End blog entries list -->
+
+            <div class="col-lg-4">
+
+              <div class="sidebar" data-aos="fade-left">
+
+                <h3 class="sidebar-title">Search</h3>
+                <div class="sidebar-item search-form">
+                  <form method="GET" action="/blog-search">
+                    <input type="text" name="search" placeholder="Search here...">
+                    <button type="submit"><i class="icofont-search"></i></button>
+                  </form>
+
+                </div><!-- End sidebar search formn-->
+
+                <h3 class="sidebar-title">Categories</h3>
+                <div class="sidebar-item categories">
+                  <ul>
+                    <% for(let x of categorise) { %>
+                      <li><a href="/blog-category/<%=x.id%>">
+                          <%= x.name %> <span>(25)</span>
+                        </a></li>
+                      <% } %>
+                  </ul>
+
+                </div><!-- End sidebar categories-->
+
+                <h3 class="sidebar-title">Recent Posts</h3>
+                <div class="sidebar-item recent-posts">
+                  <% for(let x of recentblogs) { %>
+                    <div class="post-item clearfix">
+                      <img src="./../../Upload/BlogImage/<%=x.image%>" alt="">
+                      <h4><a href="/single_blog">
+                          <%=x.title%>
+                        </a></h4>
+                      <time datetime="2020-01-01">Jan 1, 2020</time>
+                    </div>
+                    <% } %>
+
+                </div><!-- End sidebar recent posts-->
+
+              </div><!-- End sidebar -->
+
+            </div><!-- End blog sidebar -->
+
+          </div>
+
+        </div>
+      </section><!-- End Blog Section -->
+
+    </main><!-- End #main -->
+    <%- include('common/footer') %>

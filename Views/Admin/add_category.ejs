@@ -1,0 +1,19 @@
+<%- include('Common/header') %>
+<%- include('Common/sidebar') %>
+<div id="content" class="p-4 p-md-5 pt-5">
+    <h2 class="mb-4">Add Category</h2>
+    <dir>
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="/admin/add-category/content" >
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Enter category">
+                      </div>
+                    <button type="submit" class="btn btn-primary">Add Category</button>
+                  </form>
+            </div>
+          </div>
+    </dir>
+    </div>
+<%- include('Common/footer') %>

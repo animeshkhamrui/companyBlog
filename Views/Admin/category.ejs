@@ -1,0 +1,40 @@
+<%- include('Common/header') %>
+<%- include('Common/sidebar') %>
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5 pt-5">
+    <% if(message.length>0) { %>
+      <div class="alert alert-success text-center">
+          <%= message %>
+      </div>
+      <% } %>
+      <h2 class="mb-4">All Feature</h2>
+      <div><a href="/admin/add-category/page"><button class="btn btn-large btn-success">Add category</button></a></div>
+      <div>
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center">#</th>
+                  <th scope="col" class="text-center">Name</th>
+                  <th colspan="2" class="text-center">Action</th>
+                </tr>
+              </thead>
+             <% if(allcategory.length>0) { %>
+              <% let i=0 %>
+              <tbody>
+                  <% for(let x of allcategory) { %>
+                      <% i+=1 %>
+                <tr>
+                  <th  class="text-center" scope="row"><%= i %></th>
+                  <td  class="text-center" ><%= x.name %></td>
+                  <td  class="text-center"><a href="/admin/edit-category/page/<%= x._id %>"><button class="btn btn-success">Edit</button></a></td>
+                  <td  class="text-center"><a href="/admin/delete-category/<%= x._id %>"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>
+                <% } %>
+              </tbody>
+              <% }else{ %>
+                  <div>No Category Available...</div>
+                  <% } %>
+            </table>
+      </div>
+      </div>
+<%- include('Common/footer') %>
